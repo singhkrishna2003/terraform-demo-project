@@ -15,13 +15,17 @@ provider "azurerm" {
   
 }
 
+variable "storage_account_name"{
+type = string
+}
+
 resource "azurerm_resource_group" "example" {
   name     = "example-resources"
   location = "Central India"
 }
 
 resource "azurerm_storage_account" "example" {
-  name                     = "techtutorial101ks202601"
+  name                     = var.storage_account_name
   resource_group_name      = azurerm_resource_group.example.name
   location                 = azurerm_resource_group.example.location
   account_tier             = "Standard"
